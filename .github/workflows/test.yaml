@@ -22,7 +22,7 @@ jobs:
 
       - uses: taiki-e/install-action@v2
         with:
-          tools: cargo-nextest cargo-llvm-cov cargo-mutants just cargo-insta
+          tool: cargo-nextest,cargo-llvm-cov,cargo-mutants,just,cargo-insta
 
       - run: just test
 
