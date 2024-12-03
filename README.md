@@ -5,7 +5,7 @@ This is an example of how to use the `cargo-llvm-cov` tool to generate coverage 
 ## Setup
 
 ```bash
-cargo install binstall
+cargo install cargo-binstall
 ```
 
 We need to use nightly Rust to run the tests and generate the coverage report.
