@@ -64,6 +64,20 @@ pub fn bat_mans_chest(a: i32) -> i32 {
     panic!("IT ARIVED: {}", a);
 }
 
+fn big_brain_math(a: i32, mut b: i32) -> i32 {
+    loop {
+        for _ in 0..a {
+            b += 1;
+        }
+
+        if b % 1027 == 0 {
+            break;
+        }
+    }
+
+    b
+}
+
 #[cfg_attr(all(coverage_nightly, test), coverage(off))]
 #[cfg(test)]
 mod tests {
