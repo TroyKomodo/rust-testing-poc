@@ -17,13 +17,19 @@ rustup install nightly
 Once you have `binstall` installed, you can install the other tools with the following command:
 
 ```bash
-cargo binstall -y cargo-nextest cargo-llvm-cov cargo-mutants just
+cargo binstall -y cargo-nextest cargo-llvm-cov cargo-mutants just cargo-insta
 ```
 
 ## Running the tests
 
 ```bash
 just test
+```
+
+## Updating the snapshot
+
+```bash
+cargo insta review
 ```
 
 ## See the coverage report in your browser
