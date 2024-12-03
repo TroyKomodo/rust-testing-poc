@@ -121,6 +121,7 @@ mod tests {
     fn test_test_branches_enum() {
         assert_eq!(test_branches_enum(TestEnum::A), TestEnum::A);
         assert_eq!(test_branches_enum(TestEnum::B), TestEnum::B);
+        assert_eq!(test_branches_enum(TestEnum::B2), TestEnum::C);
         assert_eq!(test_branches_enum(TestEnum::C), TestEnum::C);
     }
 }
