@@ -42,6 +42,24 @@ pub fn test_branches(a: f64, b: f64) -> f64 {
     }
 }
 
+#[derive(Debug, PartialEq)]
+pub enum TestEnum {
+    A,
+    B,
+    B2,
+    C,
+}
+
+pub fn test_branches_enum(a: TestEnum) -> TestEnum {
+    if a == TestEnum::A {
+        TestEnum::A
+    } else if a == TestEnum::B || a == TestEnum::B2 {
+        TestEnum::B
+    } else {
+        TestEnum::C
+    }
+}
+
 #[cfg_attr(all(coverage_nightly, test), coverage(off))]
 #[cfg(test)]
 mod tests {
@@ -93,6 +111,16 @@ mod tests {
 
     #[test]
     fn test_snapshot() {
-        insta::assert_compact_debug_snapshot!(test_branches(2.0, 1.5));
+        insta::assert_compact_debug_snapshot!(test_branches(2.0, 1.0));
+        insta::assert_compact_debug_snapshot!(test_branches(5.0, 1.2));
+        insta::assert_compact_debug_snapshot!(test_branches(10.0, 1.0));
+        insta::assert_compact_debug_snapshot!(test_branches(100.0, 1.0));
+    }
+
+    #[test]
+    fn test_test_branches_enum() {
+        assert_eq!(test_branches_enum(TestEnum::A), TestEnum::A);
+        assert_eq!(test_branches_enum(TestEnum::B), TestEnum::B);
+        assert_eq!(test_branches_enum(TestEnum::C), TestEnum::C);
     }
 }
