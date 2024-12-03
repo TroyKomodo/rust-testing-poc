@@ -24,7 +24,7 @@ jobs:
         with:
           tool: cargo-nextest,cargo-llvm-cov,cargo-mutants,just,cargo-insta
 
-      - run: just test
+      - run: just test-ci
 
       - uses: codecov/codecov-action@v5
         with:
