@@ -60,6 +60,10 @@ pub fn test_branches_enum(a: TestEnum) -> TestEnum {
     }
 }
 
+pub fn bat_mans_chest(a: i32) -> i32 {
+    panic!("IT ARIVED: {}", a);
+}
+
 #[cfg_attr(all(coverage_nightly, test), coverage(off))]
 #[cfg(test)]
 mod tests {
@@ -123,5 +127,11 @@ mod tests {
         assert_eq!(test_branches_enum(TestEnum::B), TestEnum::B);
         assert_eq!(test_branches_enum(TestEnum::B2), TestEnum::B);
         assert_eq!(test_branches_enum(TestEnum::C), TestEnum::C);
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_bat_mans_chest() {
+        bat_mans_chest(1);
     }
 }
