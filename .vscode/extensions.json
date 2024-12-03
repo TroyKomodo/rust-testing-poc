@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "ryanluker.vscode-coverage-gutters",
+        "skellock.just",
+        "swellaby.rust-pack"
+    ]
+}

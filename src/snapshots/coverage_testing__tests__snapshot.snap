@@ -1,0 +1,6 @@
+---
+source: src/lib.rs
+expression: "test_branches(2.0, 1.5)"
+snapshot_kind: text
+---
+0.8660254037844386
