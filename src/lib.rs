@@ -58,7 +58,7 @@ pub fn bat_mans_chest(a: i32) -> i32 {
     panic!("IT ARIVED: {}", a);
 }
 
-fn big_brain_math(a: i32, mut b: i32) -> i32 {
+pub fn big_brain_math(a: i32, mut b: i32) -> i32 {
     loop {
         for _ in 0..a {
             b += 1;
