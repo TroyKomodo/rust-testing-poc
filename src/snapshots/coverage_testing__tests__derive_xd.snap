@@ -1,0 +1,16 @@
+---
+source: src/lib.rs
+expression: "compile_str!(include_str!(\"./tests/xd.rs\"))"
+snapshot_kind: text
+---
+exit status: 0
+--- stdout 
+#![feature(prelude_import)]
+#[prelude_import]
+use std::prelude::rust_2021::*;
+#[macro_use]
+extern crate std;
+struct Test {
+    a: u32,
+    b: u32,
+}

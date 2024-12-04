@@ -1,6 +1,6 @@
 ---
-source: ui/runner.rs
-input_file: ui/tests/derive.rs
+source: src/lib.rs
+expression: "postcompile::compile!\n{\n    #[derive(Debug, Clone, serde_derive2::Deserialize)] struct Test\n    { a: u32, b: i32, } const TEST: Test = Test\n    { a: 1, b: proc::magic_macro2!(1, 2) };\n}"
 snapshot_kind: text
 ---
 exit status: 0
@@ -12,7 +12,7 @@ use std::prelude::rust_2021::*;
 extern crate std;
 struct Test {
     a: u32,
-    b: u32,
+    b: i32,
 }
 #[automatically_derived]
 impl ::core::fmt::Debug for Test {
@@ -119,7 +119,7 @@ const _: () =
                                                 &"struct Test with 2 elements")),
                             };
                         let __field1 =
-                            match _serde::de::SeqAccess::next_element::<u32>(&mut __seq)?
+                            match _serde::de::SeqAccess::next_element::<i32>(&mut __seq)?
                                 {
                                 _serde::__private::Some(__value) => __value,
                                 _serde::__private::None =>
@@ -134,7 +134,7 @@ const _: () =
                         __A: _serde::de::MapAccess<'de> {
                         let mut __field0: _serde::__private::Option<u32> =
                             _serde::__private::None;
-                        let mut __field1: _serde::__private::Option<u32> =
+                        let mut __field1: _serde::__private::Option<i32> =
                             _serde::__private::None;
                         while let _serde::__private::Some(__key) =
                                 _serde::de::MapAccess::next_key::<__Field>(&mut __map)? {
@@ -153,7 +153,7 @@ const _: () =
                                                             _serde::de::Error>::duplicate_field("b"));
                                         }
                                     __field1 =
-                                        _serde::__private::Some(_serde::de::MapAccess::next_value::<u32>(&mut __map)?);
+                                        _serde::__private::Some(_serde::de::MapAccess::next_value::<i32>(&mut __map)?);
                                 }
                                 _ => {
                                     let _ =
@@ -187,3 +187,4 @@ const _: () =
             }
         }
     };
+const TEST: Test = Test { a: 1, b: 1 + 2 };

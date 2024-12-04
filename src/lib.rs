@@ -83,6 +83,11 @@ mod tests {
     }
 
     #[test]
+    fn test_big_brain_math() {
+        assert_eq!(big_brain_math(1, 2), 1027);
+    }
+
+    #[test]
     fn test_subtract() {
         assert_eq!(subtract(1, 2), -1);
         assert_eq!(subtract(2, 1), 1);
@@ -142,5 +147,18 @@ mod tests {
     fn test_bat_mans_chest() {
         bat_mans_chest(1);
         assert_eq!(proc::magic_macro!(1, 2), 3);
+    }
+
+    #[test]
+    fn test_derive() {
+        insta::assert_snapshot!(postcompile::compile! {
+            #[derive(Debug, Clone, serde_derive2::Deserialize)]
+            struct Test {
+                a: u32,
+                b: i32,
+            }
+
+            const TEST: Test = Test { a: 1, b: proc::magic_macro2!(1, 2) };
+        });
     }
 }

@@ -1,5 +1,5 @@
 [workspace]
-members = ["proc", "test-runner"]
+members = ["proc"]
 
 [package]
 name = "coverage-testing"
@@ -14,17 +14,6 @@ proc = { path = "proc" }
 serde_derive2 = { version = "1.0", package = "serde_derive" }
 serde = "1.0"
 
-[target.'cfg(unix)'.dependencies]
-openssl = "0.10.68"
-
 [dev-dependencies]
 insta = "1.2.0"
-test-runner = { path = "test-runner" }
-
-[[test]]
-name = "ui"
-harness = false
-path = "ui/runner.rs"
-
-[features]
-xd = []
+postcompile = "0.0.2"

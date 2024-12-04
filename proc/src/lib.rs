@@ -17,7 +17,7 @@ impl syn::parse::Parse for MacroInput {
 #[proc_macro]
 pub fn magic_macro(input: TokenStream) -> TokenStream {
     let input: MacroInput = syn::parse_macro_input!(input);
-
+    
     let exprs = &input.exprs;
 
     let output = quote::quote! {
