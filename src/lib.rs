@@ -4,31 +4,25 @@ pub fn add(a: i32, b: i32) -> i32 {
     a + b
 }
 
-
 pub fn subtract(a: i32, b: i32) -> i32 {
     a - b
 }
-
 
 pub fn multiply(a: i32, b: i32) -> i32 {
     a * b
 }
 
-
 pub fn divide(a: i32, b: i32) -> i32 {
     a / b
 }
-
 
 pub fn power(a: i32, b: u32) -> i32 {
     a.pow(b)
 }
 
-
 pub fn sqrt(a: f64) -> f64 {
     a.sqrt()
 }
-
 
 pub fn log(a: f64, base: f64) -> f64 {
     a.log(base)
@@ -42,7 +36,7 @@ pub fn test_branches(a: f64, b: f64) -> f64 {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, serde_derive2::Serialize)]
 pub enum TestEnum {
     A,
     B,
@@ -60,6 +54,24 @@ pub fn test_branches_enum(a: TestEnum) -> TestEnum {
     }
 }
 
+pub fn bat_mans_chest(a: i32) -> i32 {
+    panic!("IT ARIVED: {}", a);
+}
+
+pub fn big_brain_math(a: i32, mut b: i32) -> i32 {
+    loop {
+        for _ in 0..a {
+            b += 1;
+        }
+
+        if b % 1027 == 0 {
+            break;
+        }
+    }
+
+    b
+}
+
 #[cfg_attr(all(coverage_nightly, test), coverage(off))]
 #[cfg(test)]
 mod tests {
@@ -68,6 +80,11 @@ mod tests {
     #[test]
     fn test_add() {
         assert_eq!(add(1, 2), 3);
+    }
+
+    #[test]
+    fn test_big_brain_math() {
+        assert_eq!(big_brain_math(1, 2), 1027);
     }
 
     #[test]
@@ -123,5 +140,25 @@ mod tests {
         assert_eq!(test_branches_enum(TestEnum::B), TestEnum::B);
         assert_eq!(test_branches_enum(TestEnum::B2), TestEnum::B);
         assert_eq!(test_branches_enum(TestEnum::C), TestEnum::C);
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_bat_mans_chest() {
+        bat_mans_chest(1);
+        assert_eq!(proc::magic_macro!(1, 2), 3);
+    }
+
+    #[test]
+    fn test_derive() {
+        insta::assert_snapshot!(postcompile::compile! {
+            #[derive(Debug, Clone, serde_derive2::Deserialize)]
+            struct Test {
+                a: u32,
+                b: i32,
+            }
+
+            const TEST: Test = Test { a: 1, b: proc::magic_macro2!(1, 2) };
+        });
     }
 }

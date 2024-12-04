@@ -1,3 +1,6 @@
+[workspace]
+members = ["proc"]
+
 [package]
 name = "coverage-testing"
 version = "0.1.0"
@@ -7,6 +10,10 @@ edition = "2021"
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(coverage_nightly)'] }
 
 [dependencies]
+proc = { path = "proc" }
+serde_derive2 = { version = "1.0", package = "serde_derive" }
+serde = "1.0"
 
 [dev-dependencies]
 insta = "1.2.0"
+postcompile = "0.0.3"

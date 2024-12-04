@@ -2,7 +2,8 @@ test *args:
     #!/bin/bash
     set -e -o pipefail 
 
-    INSTA_FORCE_PASS=1 cargo +nightly llvm-cov nextest --branch --no-report {{args}}
+    INSTA_FORCE_PASS=1 cargo +nightly llvm-cov clean --workspace
+    INSTA_FORCE_PASS=1 cargo +nightly llvm-cov nextest --branch --include-build-script --no-report {{args}}
 
     # Do not generate the coverage report on CI
     cargo insta review
