@@ -11,10 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: dtolnay/rust-toolchain@stable
         id: setup-rust
         with:
           toolchain: nightly
+          components: llvm-tools-preview
+
       - uses: Swatinem/rust-cache@v2
         with:
           prefix-key: "v0-rust-${{ steps.setup-rust.outputs.cachekey }}"

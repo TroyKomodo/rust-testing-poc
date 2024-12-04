@@ -1,3 +1,6 @@
+[workspace]
+members = ["proc", "test-runner"]
+
 [package]
 name = "coverage-testing"
 version = "0.1.0"
@@ -7,6 +10,21 @@ edition = "2021"
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(coverage_nightly)'] }
 
 [dependencies]
+proc = { path = "proc" }
+serde_derive2 = { version = "1.0", package = "serde_derive" }
+serde = "1.0"
+
+[target.'cfg(unix)'.dependencies]
+openssl = "0.10.68"
 
 [dev-dependencies]
 insta = "1.2.0"
+test-runner = { path = "test-runner" }
+
+[[test]]
+name = "ui"
+harness = false
+path = "ui/runner.rs"
+
+[features]
+xd = []

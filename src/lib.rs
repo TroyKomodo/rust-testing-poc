@@ -4,31 +4,25 @@ pub fn add(a: i32, b: i32) -> i32 {
     a + b
 }
 
-
 pub fn subtract(a: i32, b: i32) -> i32 {
     a - b
 }
-
 
 pub fn multiply(a: i32, b: i32) -> i32 {
     a * b
 }
 
-
 pub fn divide(a: i32, b: i32) -> i32 {
     a / b
 }
-
 
 pub fn power(a: i32, b: u32) -> i32 {
     a.pow(b)
 }
 
-
 pub fn sqrt(a: f64) -> f64 {
     a.sqrt()
 }
-
 
 pub fn log(a: f64, base: f64) -> f64 {
     a.log(base)
@@ -42,7 +36,7 @@ pub fn test_branches(a: f64, b: f64) -> f64 {
     }
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, serde_derive2::Serialize)]
 pub enum TestEnum {
     A,
     B,
@@ -147,5 +141,6 @@ mod tests {
     #[should_panic]
     fn test_bat_mans_chest() {
         bat_mans_chest(1);
+        assert_eq!(proc::magic_macro!(1, 2), 3);
     }
 }
