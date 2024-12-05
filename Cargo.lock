@@ -107,16 +107,28 @@ checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 
 [[package]]
 name = "postcompile"
-version = "0.0.3"
+version = "0.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "557a8cbb6553ffed11789334de3deb0c6b2c750c7ddd6cee9894c9727193e356"
+checksum = "ed667a05dd0034e280a554dfc4f0f87c770f9ea81f34285fb73ec13de25cdbcb"
 dependencies = [
  "cargo-platform",
  "cargo_metadata",
+ "prettyplease",
  "serde",
  "serde_derive",
  "serde_json",
+ "syn",
  "target-triple",
+]
+
+[[package]]
+name = "prettyplease"
+version = "0.2.25"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "64d1ec885c64d0457d564db4ec299b2dae3f9c02808b8ad9c3a089c591b18033"
+dependencies = [
+ "proc-macro2",
+ "syn",
 ]
 
 [[package]]

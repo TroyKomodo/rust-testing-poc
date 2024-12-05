@@ -152,13 +152,21 @@ mod tests {
     #[test]
     fn test_derive() {
         insta::assert_snapshot!(postcompile::compile! {
+            #![allow(unused)]
+
             #[derive(Debug, Clone, serde_derive2::Deserialize)]
             struct Test {
                 a: u32,
                 b: i32,
             }
 
-            const TEST: Test = Test { a: 1, b: proc::magic_macro2!(1, 2) };
+            static TEST: Test = Test { a: 1, b: proc::magic_macro2!(1, 2) };
+
+            fn test() {
+                let x = 1;
+                let y = 2;
+                let z = x + y;
+            }
         });
     }
 }
