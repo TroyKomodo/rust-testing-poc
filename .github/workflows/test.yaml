@@ -38,9 +38,9 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           verbose: true
 
-      - name: Upload test results to Codecov
-        if: ${{ !cancelled() }}
-        uses: codecov/test-results-action@v1
+      - name: Report test coverage to DeepSource
+        uses: deepsourcelabs/test-coverage-action@master
         with:
-          files: ./target/nextest/ci/junit.xml
-          token: ${{ secrets.CODECOV_TOKEN }}
+          key: python
+          coverage-file: lcov.info
+          dsn: ${{ secrets.DEEPSOURCE_DSN }}
