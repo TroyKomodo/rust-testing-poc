@@ -5,3 +5,7 @@ name = "rust"
 
 [analyzers.meta]
 msrv = "stable"
+
+[[analyzers]]
+name = "test-coverage"
+enabled = true
